@@ -206,7 +206,7 @@ function BoutonEnregistrer()
 
 function ChangerMode() {
         if($('#ChangMod').val() == 'Mode Revue'){
-            $('.ui-content').css("background-color", "blue");    
+            $('.ui-content').css("background-color", "#9A7100");    
             $('#ChangMod').val('Mode Enregistrement');
         }else{
             $('#ChangMod').val('Mode Revue');
