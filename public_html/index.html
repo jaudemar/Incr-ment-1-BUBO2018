@@ -1,0 +1,172 @@
+<!DOCTYPE html> 
+<html> 
+  <head> 
+    <title>My Page</title> 
+    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    
+      <script type="text/javascript" src="jquery-1.11.1.min.js"> </script>
+      <script type="text/javascript" src="bubo2.js"> </script>
+      <link rel="stylesheet" href="jquery.mobile.min.css" />
+      <link rel="stylesheet" type="text/css" href="IHM.css"> 
+        
+  </head> 
+<body onload="debug(); lireListe();">
+
+    <div data-role="page" id="page1">
+        <div data-role="content">
+
+    <fieldset class="ui-grid-m">
+
+          <div class="ui-block-a" style="width: 35%;"><img src="Bubo.png" id="photo" style="width: 100%;" /></div>
+          <div class="ui-block-b" style="width: 20%;"><img src="LogoBubo.png" id="photo2" style="width: 100%;" /></div>
+          <div class="ui-block-c" style="width: 45%;"><input type="button" style="background-color: red;" id="ChangMod" value="Mode Revue" style='width: 33%'></div>
+
+    </fieldset>
+
+
+ 
+
+
+       
+    <div id="divConteneur">
+                  <ul data-role="listview" class="ui-listview" id="tab2" >
+                    <div id="tableau" ></div> 
+                  </ul>
+      
+          </div>
+                    <fieldset class="ui-grid-a">
+            <div class="ui-block-a" style="width: 35%;"><input type="button" id="nouveau"   value="Nouveau" ></div>
+            <div class="ui-block-b" style="width: 35%;"><input type="button" id="supprimer" style="background-color: red;"  value="Supprimer" disabled></div>
+            <div class="ui-block-c" style="width: 30%;"><input type="button" id="modifier" style="background-color: red;"  value="Modifier" disabled></div>
+          </fieldset>
+
+          <fieldset class="ui-grid-b">
+            <div class="ui-block-a" style="width: 50%;"><label id="labelLatitude" style="color:white;" >Latitude:</label></div>
+            <div class="ui-block-b" style="width: 50%;"><label id="labelLongitude" style="color:white;" >Longitude:</label></div>
+          </fieldset>
+
+          <fieldset class="ui-grid-c">
+            <div class="ui-block-a" style="width: 50%;"><input id="donne0" type="text" name="LATITUDE" disabled></div>
+            <div class="ui-block-b" style="width: 50%;"><input id="donne1" type="text" name="LONGITUDE"disabled></div>     
+          </fieldset>
+
+          <br>
+
+          <fieldset class="ui-grid-abc"> 
+            <div class="ui-block-a" style="width: 50%;"><label id="TypeLampa" style="color:white;">Type de Lampadaire:</label></div> 
+            <div class="ui-block-b" style="width: 50%;"><label id="ULOR" style="color:white;">ULOR:</label></div>
+          </fieldset>
+
+          <fieldset class="iu-grid-e">
+
+            <div class="ui-block-a" style="width: 50%;" >
+              <select name="select" id="donne2" name="LAMPADAIRE" style="background-color:#FABFBF;" disabled>
+              </select>      
+            </div>  
+
+            <div class="ui-block-b" style="width: 50%;" disabled>
+              <select name="select" id="donne3" name="ULOR" style="background-color:#FABFBF;" disabled>
+              </select>
+            </div>
+          </fieldset>
+
+          <fieldset class="ui-grid-f">
+            <div class="ui-block-a" style="width: 50%;"><label id="TypeAmp" style="color:white;">Type d'ampoule:</label></div>
+            <div class="ui-block-b" style="width: 50%;"><label id="hauteur" style="color:white;">Hauteur:</label></div>
+          </fieldset>
+
+          <fieldset class="ui-grid-gg">
+   
+
+            <div class="ui-block-a" style="width:50%;"> 
+
+              <select name="select" id="donne4" name="AMPOULE" style="background-color:#FABFBF;" disabled>
+              </select>
+
+            </div>
+            
+            <div class="ui-block-b" style="width:30%;"><input type="text" id="donne5"  name="HAUTEUR" disabled></div>
+            <div class="ui-block-c" style="width:20%;"><label id="metres" style="color:white;">Metres</label>
+          </fieldset>
+            
+          <fieldset class="ui-grid-h">
+            <div class="ui-block-a" style="width: 65%;"><label id="puissance" style="color:white;">Puissance:</label></div>
+            <div class="ui-block-b" style="width: 35%;"><label id="albedo" style="color:white;">Albedo :</label></div>           
+          </fieldset>
+                    
+          <fieldset class="ui-grid-i">
+            <div class="ui-block-a" style="width: 40%;"><input id="donne6" type="text" name="PUISSANCE" disabled></div>
+            <div class="ui-block-b" style="width: 20%;"><label id="watts" style="color:white;" >Watts</label></div>
+            <div class="ui-block-c" style="width: 30%;"> 
+
+              <select name="select" id="donne7"  name="ALBEDO" style="background-color:#FABFBF;" disabled>
+              </select>
+
+            </div>
+          </fieldset>
+           
+           <fieldset class="ui-grid-ii">
+            <div class="ui-block-a" style="width: 50%;"><label id="agglo" style="color:white;">Agglomeration:</label></div>
+            <div class="ui-block-c" style="width: 50%;"><label id="rue" style="color:white;">Rue:</label></div>
+          </fieldset>
+
+          <fieldset class="ui-grid-i2">
+            <div class="ui-block-a" style="width: 50%;"><input id="donne8"  type="text" name="AGGLOMERATION" disabled></div>
+            <div class="ui-block-b" style="width: 50%;"><input id="donne9"  type="text" name="RUE" disabled></div>
+          </fieldset>
+
+
+          <fieldset class="ui-grid-j">
+            <div class="ui-block-a" style="width: 60%;"><label id="notes" style="color:white;">Notes:</label></div>
+            <div class="ui-block-b" style="width: 40%;"><label id="lux" style="color:white;">Flux Lux.:</label></div>
+          </fieldset>
+
+          <fieldset class="ui-grid-k">
+            <div class="ui-block-a" style="width: 60%;"><input id="donne10"  type="text" name="NOTES" disabled></div>
+            <div class="ui-block-b" style="width: 20%;"><input type="button" style="background-color:red;"  id="donne11" value="Lux" disabled></div>
+            <div class="ui-block-c" name="LUMINOSITE" style="width: 20%;"><input id="donne12" type="text" disabled></div> 
+          </fieldset>
+        
+
+          <fieldset class="ui-grid-l"> <!--Bouton PHOTO -->
+            <div class="ui-block-a" style="width: 35%;"><input type="button" style="background-color:red;" id="geo" value="Geolocaliser" disabled></div>
+            <div class="ui-block-b" style="width: 30%;"><a href="#menu" id="pic" style="background-color:#FFE3E3;" class="ui-btn ui-corner-all 
+            ui-btn-inline ui-disabled" data-rel="popup">Photo</a>
+               <!--Création du pop up -->
+              <div data-role="popup" id="menu">
+                <a href="#page2" data-transition="slide" class="ui-btn ui-corner-all ui-btn-inline">
+                Galerie</a>  <!--Direction la Galerie -->
+                  <input type="file" accept="image/" id="capture" capture="camera"> 
+              </div>
+              </div>
+              <div class="ui-block-c" style="width: 35%;"><input type="button" style="background-color:red;" id="save" value="Enregistrer" disabled></div>        
+          </fieldset>
+        </div>
+      </div>
+
+          <script type="text/javascript" src="IHM.js"></script>  
+          <script type="text/javascript"></script>
+          <script type="text/javascript" src="jquery.mobile.min.js"> </script>
+
+          
+        </div>
+      </div>
+
+    </div>
+
+<!-- Let's go page 2 -->
+
+      <div data-role="page" id="page2">
+       <div data-role="header">
+         <h1>Bienvenue dans la Galerie !</h1>
+       </div>
+
+      <div role="popup" class="ui-content">
+        <div id='miniature'></div>
+          <a href="#page1" data-rel="back" data-transition="slide" class="ui-btn ui-corner-all ui-btn-inline">Go Back To Page 1</a>
+      </div>
+
+
+  </body>
+</html>
+

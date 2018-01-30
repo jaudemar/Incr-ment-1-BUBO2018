@@ -1,0 +1,81 @@
+#tableau{
+	padding: 5%;
+}
+
+#tableau tr:hover {
+background-color: silver;
+// là tu specifie un background lorsque le curseur passe dessus.
+}
+
+.ui-btn  {
+
+	border-radius:7px ;
+	border:10px ;
+	min-width:30px !important;
+}
+
+/* Le tableau */
+#divConteneur{
+	min-height:235px;
+	height:235px;/*pour IE qui comprend rien, et qui ne reconnait pas min-height, mais qui comprend mal height*/
+	min-width:340px;
+	width:340px;/*pour IE qui comprend rien*/
+	overflow:auto;/*pour activer les scrollbarres*/
+
+}
+
+/*Quand on passe la souris sur le tableau
+il grise la ligne*/ 
+#divConteneur li {
+   background-color: white;
+   border-top: 1px solid #fff;
+}
+#divConteneur li:hover {
+   background-color: #ccc;
+}
+/*#divConteneur li:hover  {
+   cursor: pointer;
+}
+*/
+
+.ui-title
+{
+    width: 70%;
+    margin-left: 10%;
+    margin-right: 10%;
+}
+
+.ui-block-b
+{
+	text-align: center;
+}
+
+#metres, #watts
+{
+	text-align: left;
+	margin-top: 20px;
+}
+
+.ui-content
+{
+	background-color: rgba(65, 2, 2, 1);
+}
+
+#labelLatitude, #labelLongitude, #TypeLampa, #ULOR, #TypeAmp, #hauteur, #puissance, #albedo, #agglo, #rue, #notes, #lux{
+	text-align: left;
+}
+
+.entete
+{
+	padding-right:  100%;
+
+}
+
+.ui-responsive 
+{
+	background-color: rgba(252, 226, 226, 0);
+	width: 5%;
+	border-style: solid;
+	border-color: grey;
+	margin-left: 4%
+}
