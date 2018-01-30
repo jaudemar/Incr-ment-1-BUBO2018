@@ -142,21 +142,20 @@ function BoutonEnregistrer()
 	envoi(identifiant);
     	if($('#nouveau').val() == 'Annuler')
     	{
-            /*
 		$.ajax({    
 		    type : 'POST',
 		    url : '/cgi-bin/enregistrer.cgi',
 		    data : formData,
 		    processData : false,
 		    success : function (data) {
-			////tab = data;
-			genererTableau(tab); ///////
+			/*tab = data;
+			genererTableau(tab);*/
 		    },
 		    error : function (result, status, erreur){
 			alert(erreur);
 		    },
-		    }); */
-        	$.ajax({
+		    });
+        	/*$.ajax({
 			type : 'POST',
                 	url : "../cgi-bin/enregistrer.cgi",
                 	dataType: "json",
@@ -169,7 +168,7 @@ function BoutonEnregistrer()
                         error: function (reponse,status) {
                             alert("L'enregistrement des donn?s c'est interrompus, veuilliez r?sayez");
                         }
-			});
+			});*/
     	} /*else {
           type: 'POST',
                         url: '../cgi-bin/gps/modifier.cgi',
@@ -180,9 +179,9 @@ function BoutonEnregistrer()
                                 },
                         error: function (reponse,status) {
                            alert("La modification des donn?s c'est interrompus, veuilliez r?sayez");
-                        }*/
+                        }
 
-    }                  
+    }                  */  
 
 
             $('#tab2').attr('class', 'ui-listview'); // cet ??ent aura la classe ui-listview
@@ -207,11 +206,11 @@ function BoutonEnregistrer()
 
 function ChangerMode() {
         if($('#ChangMod').val() == 'Mode Revue'){
-            $('.ui-content').css("background-color", "#9D5207");    //changement de la couleur pour le mode revue
+            $('.ui-content').css("background-color", "blue");    
             $('#ChangMod').val('Mode Enregistrement');
         }else{
             $('#ChangMod').val('Mode Revue');
-            $('.ui-content').css("background-color", "#610B21");  // remise de la couleur grenat pour le mode enregistrement
+            $('.ui-content').css("background-color", "#610B21");    
         }
         $('#ChangMod').button('refresh');
         return;    
