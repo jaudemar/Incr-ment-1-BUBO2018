@@ -65,7 +65,7 @@ function griser ()
 };
 */
 
-var tabPhoto = new Array();
+var tabPhoto = new Array(); 
 var tab= new Array();
 function genererTableau(data){
             $("#tableau").empty();
@@ -287,7 +287,7 @@ function Nouveau() {
             $('#nouveau').prop('value', 'Nouveau'); //On repasse sa valeur a "Nouveau"
             $('#nouveau').button('refresh');
 
-			griserChamps(); //On degrise les champs
+			griserChamps(); //On grise les champs
 	}
 };
 
@@ -489,7 +489,7 @@ function readFile(file) {
 function envoi(identifiant) {
 
 
-    var formData = new FormData();  //Cr?r un ensemble de paires cl?valeur
+    var formData = new FormData();  //Creer un ensemble de paires cl?valeur
 
 	for(var nbPhoto = 0; nbPhoto < tabPhoto.length; nbPhoto++){
 		formData.append('photo'+nbPhoto, tabPhoto[nbPhoto]); //Ajoute la valeur photo/image
