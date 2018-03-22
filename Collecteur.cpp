@@ -36,6 +36,7 @@ using namespace std;
 using namespace cgicc;
 
 
+
 int Collecteur::recupererIdentifiantRaspberry() {
 
 	FILE * pFile;
@@ -70,5 +71,88 @@ string Collecteur::getIdentifiant()
 	return _identifiant;
 }
 
-Collecteur::Collecteur () {
+Collecteur::Collecteur()
+{
+	unGPS=new GPS();
 }
+string Collecteur::creerEnregistrement()
+{
+	this->listeEnregistrements.push_back(new Enregistrement(unGPS));
+	if (!listeEnregistrements.empty()) {
+		listeEnregistrements.back()->creerIdentifiant();
+	}
+}
+
+string Collecteur::geolocaliser()
+{
+	char laLatitude[10];
+	char laLongitude[10];
+	int erreur=0;
+	string retour;
+	if (!listeEnregistrements.empty()) {
+		erreur = listeEnregistrements.back()->localiser(laLatitude, laLongitude);
+	}
+    switch (erreur)
+	{
+		case MAUVAISETRAME : retour ="MAUVAISE TRAME ";
+			break;
+		case ALERTE : retour ="ALERTE GPS non prêt  ";
+			break;
+		case ERREURCHECKSUM : retour ="ERREUR DE CHECKSUM ";
+			break;
+		case ECHECCAPTURE : retour ="ECHEC CAPTURE ";
+			break;
+		case ERREURACCESPORT : retour ="ERREUR ACCES PORT ";
+			break;
+		default :
+			retour = "{\n\t\"LATITUDE\":"+string(laLatitude)+",\n" + "\t\"LONGITUDE\":"+string(laLongitude)+"\n}\n";
+			break;
+	}
+	return retour;
+}
+
+string Collecteur::geolocaliser(int identifiant)
+{
+	char laLatitude[10];
+	char laLongitude[10];
+	int erreur=0;
+	string retour;
+	if (!listeEnregistrements.empty()) {
+		erreur = listeEnregistrements.back()->localiser(laLatitude, laLongitude);
+	}
+    switch (erreur)
+	{
+		case MAUVAISETRAME : retour ="MAUVAISE TRAME ";
+			break;
+		case ALERTE : retour ="ALERTE GPS non prêt  ";
+			break;
+		case ERREURCHECKSUM : retour ="ERREUR DE CHECKSUM ";
+			break;
+		case ECHECCAPTURE : retour ="ECHEC CAPTURE ";
+			break;
+		case ERREURACCESPORT : retour ="ERREUR ACCES PORT ";
+			break;
+		default :
+			retour = "{\n\t\"LATITUDE\":"+string(laLatitude)+",\n" + "\t\"LONGITUDE\":"+string(laLongitude)+"\n}\n";
+			break;
+	}
+	return retour;
+}
+
+string Collecteur::obtenirIntensiteLumineuse()
+{
+	float lIntensiteLumineuse;
+	int erreur=0;
+	if (!listeEnregistrements.empty()) {
+		erreur = listeEnregistrements.back()->caracteriserAmpoule(lIntensiteLumineuse);
+	}
+	return "{\"luminosite\":\"" + to_string(lIntensiteLumineuse) +  "\"}";
+}
+
+string Collecteur::obtenirIntensiteLumineuse(int identifiant)
+{
+
+	return "eeeeeeeeeeeeeeeee";
+}
+
+

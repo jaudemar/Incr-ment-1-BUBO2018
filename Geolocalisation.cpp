@@ -17,6 +17,7 @@ Geolocalisation::Geolocalisation(GPS *unGPS)
 
 Geolocalisation::Geolocalisation()
 {
+
 }
 
 int Geolocalisation::localiser(char clatitude[10],char clongitude[10])
@@ -153,18 +154,22 @@ int Geolocalisation::extraireLongitudeRMC(std::vector<char> trameRMC, double &lo
 }
 
 
-void Geolocalisation::getLatitude(char alatitude[10]) {
-cout<<"testGeoloca"<<endl;
+void Geolocalisation::setLatitude(char aLatitude[10]){
 
-	for (int i=0; i<10;i++)
-	{
-	cout<<"Lati"<<latitude[i]<<endl;
-		alatitude[i]=latitude[i];
-
-	}
-
-cout<<"testG1"<<endl;
+        for (int i=0;i<10;i++)
+        {
+                latitude[i]=aLatitude[i];
+        }
 }
+void Geolocalisation::setLongitude(char aLongitude[10]){
+
+        for (int i=0;i<10;i++)
+        {
+                longitude[i]=aLongitude[i];
+        }
+}
+
+
 void Geolocalisation::getLongitude(char alongitude [10]) {
 
         for (int i=0;i<10;i++)
@@ -173,18 +178,17 @@ void Geolocalisation::getLongitude(char alongitude [10]) {
         }
 }
 
+void Geolocalisation::getLatitude(char alatitude[10]) {
 
-void Geolocalisation::setLongitude(char aLongitude[10]){
 
-	for (int i=0;i<10;i++)
-	{
-		longitude[i]=aLongitude[i];
-	}
-}
-void Geolocalisation::setLatitude(char aLatitude[10]){
-	for (int i=0;i<10;i++)
-	{
-		latitude[i]=aLatitude[i];
-	}
-}
+        for (int i=0; i<10;i++)
+        {
+
+                alatitude[i]=latitude[i];
+
+        }
+
+
+  }
+
 

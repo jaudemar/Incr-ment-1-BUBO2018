@@ -3,7 +3,7 @@
 #include <iostream>
 #include "GPS.h"
 #include "Horodatage.h"
-#include "string"
+
 using namespace std;
 
 
@@ -117,7 +117,7 @@ Horodatage::Horodatage(GPS *unGPS)
 
 Horodatage::Horodatage()
 {
-	
+
 }
 
 void Horodatage::getDate(char aDate[6])

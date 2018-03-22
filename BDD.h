@@ -29,7 +29,7 @@ using namespace std;
 
 		public: vector<Enregistrement*> sauvegarderDonneesEnregistrement(Enregistrement *enregistrement,string identifiantCollecteur);
 
-		public: void modifierEnregistrement(int id, float albedo, float fluxLum, string idEnregistrement, string idRaspbery, string typeAmpoule, string typeLampadaire, int hauteur, double latitude, double longitude, int nbImages, string agglo, string rue, int ulor, string date,string notes);
+		public: void modifierEnregistrement(int aId, int puissance, float aAlbedo, float aFluxLum, string aIdEnregistrement, string aIdRaspbery, string aTypeAmpoule, string aTypeLampadaire, int aHauteur, double aLatitude, double aLongitude, int aNbImages, string aAgglo, string aRue, int aUlor, string aDate,string aNotes);
 
 		private: void execute(string aRequetesql);
 

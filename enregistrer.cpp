@@ -7,11 +7,14 @@
 #include "Enregistrement.h"
 #include "BDD.h"
 #include "Collecteur.h"
+#include "Logger.h"
+
 using namespace std;
 using namespace cgicc;
 
 int main()
-{    /*   //DÃ©claration des variables
+{       Logger* monLogger = new Logger();
+	//DÃ©claration des variables
 	string identifiantCollecteur;
 	string  aIdEnregistrement;
 	int aId;
@@ -39,6 +42,7 @@ int main()
 	string mon_fichier = "/home/pi/test.txt";
     ofstream fichier(mon_fichier.c_str(),  ios::out | ios::trunc);  //déclaration du flux et ouverture du fichier
 	cout<<HTTPHTMLHeader();
+monLogger->saveLog("test enregistrer");
     if(fichier)  // si l'ouverture a réussi
         {
 			//--------------------------Récupération latitude -------------------------
@@ -172,15 +176,20 @@ int main()
 			//----------------------------------------------------------------------
 
 			//Enregistrement dans la BDD
-			maBDD->sauvegarderDonneesEnregistrement(enregistrement,identifiantCollecteur);
+//			maBDD->sauvegarderDonneesEnregistrement(enregistrement,identifiantCollecteur);
 			//----------------------------------------------------------------------
+
+			//Modifier enregistrement
+			maBDD->modifierEnregistrement(aId,puissance,aAlbedo,aFluxLum,aIdEnregistrement,aIdRaspberry,aTypeAmpoule,aTypeLampadaire,aHauteur,aLatitude,aLongitude,aNbImages,aAgglo,aRue,aUlor,aDate,aNotes);
+			//----------------------------------------------------------------------
+
 			fichier<<endl;
-			fichier<<"ENREGISTREMENT EFFECTUÃ‰"<<endl;
+			fichier<<"ENREGISTREMENT EFFECTUÃ‰ OK"<<endl;
 	           fichier.close();  // on referme le fichier
         }
     else  // sinon
          cerr << "Pb pour ouvrir le fichier!" << endl;
-*/
+/* TEST JSON
 		cout<<"{"<<endl;
 		cout<<	"""ID"":""1"<<endl;
 		cout<<	"PUISSANCE: "<<endl;
@@ -200,7 +209,7 @@ int main()
 		cout<<	"DATE:170616"<<endl;
 		cout<<	"NOTES:"<<endl;
 		cout<<"}"<<endl;
+*/
 
-
-  //  return 0;
+    return 0;
 }

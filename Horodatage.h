@@ -13,6 +13,7 @@ class Horodatage
 			char heure [6];
 		public :
 			Horodatage(GPS *unGPS);
+			Horodatage();
 			int dater(char heure[6],char date[6]);
 		private :
 			int extraireDateRMC(std::vector<char>trameRMC, char date[6] );

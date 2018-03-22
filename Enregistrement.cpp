@@ -15,7 +15,7 @@ using namespace std;
 #include"Logger.h" //x
 //Logger *monLogger=new Logger();
 
-/*
+
 Enregistrement::Enregistrement(string aIdRaspberry, GPS * unGPS) {
 //monLogger->saveLog("tes");
 	horodatage = new Horodatage(unGPS);
@@ -39,61 +39,85 @@ Enregistrement::Enregistrement(GPS * unGPS) {
 Enregistrement::Enregistrement(int aId, float aAlbedo, float aFluxLum, string aIdEnregistrement, string aIdRaspberry, string aTypeAmpoule, string aTypeLampadaire, int aHauteur, double aLatitude, double aLongitude, int aNbImages, string aAgglo, string aRue, int aUlor, string aDate, string aNotes, int puissance){
 
 }
-*/
-Enregistrement::Enregistrement( float aAlbedo, float aFluxLum, string aIdEnregistrement, string aIdRaspberry, string aTypeAmpoule, string aTypeLampadaire, int aHauteur, double aLatitude, double aLongitude, int aNbImages, string aAgglo, string aRue, int aUlor, string aDate, string aNotes, int puissance){
-string mon_fichier = "/home/pi/test1.txt";
-    ofstream fichier(mon_fichier.c_str(),  ios::out | ios::trunc);  //d�clarati$
-    if(fichier)  // si l'ouverture a r�ussi
-        {
-		fichier<< "Enregistrement OK" <<endl;
-	}
-/* //il faut instancier et mettre les attributs de enregistrer dans les attributs private de enregistrement.h:
-cout<<"test1"<<endl;
+
+Enregistrement::Enregistrement( float aAlbedo, float aFluxLum, string aIdEnregistrement, string aIdRaspberry, string aTypeAmpoule, string aTypeLampadaire, int aHauteur, double aLatitude, double aLongitude, int aNbImages, string aAgglo, string aRue, int aUlor, string aDate, string aNotes, int aPuissance){
+  	 horodatage = new Horodatage();
+        geolocalisation = new Geolocalisation();
+        ampoule = new Ampoule();
+        _identifiant="";
+        lampadaire = new Lampadaire();
+        galerie=new Galerie();
+
+//il faut instancier et mettre les attributs de enregistrer dans les attributs private de enregistrement.h:
+
 char Latitude[10];
 char Longitude[10];
-//monLogger->saveLog("test1");
-cout<<"test2"<<endl;
-    lampadaire->setAlbedo(aAlbedo) ;                         //dans lampadaire.h
-cout<<"test3"<<endl;
-    lampadaire->setHauteur(aHauteur);                       //dans lampadaire.h
-cout<<"test4"<<endl;
-    lampadaire->setULOR(aUlor);                             //dans lampadaire.h
-cout<<"test5"<<endl;
-    lampadaire->setType(aTypeLampadaire);                   //dans lampadaire.h
-cout<<"test6"<<endl;
-   ampoule->setIntensiteLumineuse(aFluxLum);                  // ampoule.h
-cout<<"test7"<<endl;
-    _identifiant=aIdEnregistrement;                          // enregistrement.h
-cout<<"test8"<<endl;
-    ampoule->setType(aTypeAmpoule);                             //  ampoule.h
-cout<<"test9"<<endl;
-//monLogger->saveLog("test2");
-   sprintf(Latitude,"%1.111111f",aLatitude);		//conversion du double en char
-cout<<"alatitu"<<aLatitude<<endl;
-   geolocalisation->setLatitude(Latitude);                    // dans geolocalisation.h
-   sprintf(Longitude,"%1.111111f", aLongitude);                   //Conversion du double en char
-    geolocalisation->setLongitude(Longitude);               // dans geolocalisation.h
-    galerie->setNbrePhotos(aNbImages);                      //dans galerie.h
-    _agglomeration=aAgglo;                                  // enregistrement.h
-    _rue =aRue;                                             // enregistrement.h
-//monLogger->saveLog("test3");
-cout<<"testENre2"<<endl;
-    const char* X;   //cree la variable X de type const char *
-    X=aDate.c_str();      // fait une conversion de aDate qui est de type string en const char*
 
-    char Date[6];   // On cree un tableau "Date" de 6
-   strcpy( Date, X); //on convertit X qui est de type const char * en Date qui est de type char*
-//monLogger->saveLog("test4");
-cout<<"testENre3"<<endl;
+	lampadaire->setAlbedo(aAlbedo) ;                         //dans lampadaire.h
+	lampadaire->getAlbedo();
+		cout<<"Albedo : "<< lampadaire->getAlbedo()<<endl;
 
-        horodatage->setDate(Date);                              //dans horodatage;h
-    _notes=aNotes;                                      // enregistrement.h
-    ampoule->setPuissance(puissance);                        //dans ampoule.h
-//monLogger->saveLog("test5");
-*/
+	lampadaire->setHauteur(aHauteur);                       //dans lampadaire.h
+	lampadaire->getHauteur();
+		cout<<"Hauteur : "<< lampadaire->getHauteur() <<endl;
+	lampadaire->setULOR(aUlor);                             //dans lampadaire.h
+	lampadaire->getULOR();
+		cout<<"ULOR : "<< lampadaire->getULOR()<<endl;
+	lampadaire->setType(aTypeLampadaire);                   //dans lampadaire.h
+	lampadaire->getType();
+		cout<<"Type de lampadaire : "<< lampadaire->getType()<<endl;
+	ampoule->setIntensiteLumineuse(aFluxLum);                  // ampoule.h
+	ampoule->getIntensiteLumineuse();
+		cout<<"Intensite lumineuse : "<< ampoule->getIntensiteLumineuse()<<endl;
+	_identifiant=aIdEnregistrement;                          // enregistrement.h
+
+	ampoule->setType(aTypeAmpoule);                             //  ampoule.h
+	ampoule->getType();
+		cout<<"Type d'ampoule : "<< ampoule->getType()<<endl;
+
+	int recup= sprintf(Latitude,"%f",aLatitude);		//conversion du double en char
+	//cout<<"donnée de  sprintf pour la latitude : "<<recup<<endl;
+
+	geolocalisation->setLatitude(Latitude);                    // dans geolocalisation.h
+	geolocalisation->getLatitude(Latitude);
+		cout<<"Latitude : "<<Latitude <<endl;
+
+	int recup2= sprintf(Longitude,"%f", aLongitude);                   //Conversion du double en char
+	//cout<<"donneé de sprintf pour la longitude : "<<recup2<<endl;
+
+    	geolocalisation->setLongitude(Longitude);               // dans geolocalisation.h
+	geolocalisation->getLongitude(Longitude);
+		cout<<"Longitude : "<<Longitude<<endl;
+
+    	galerie->setNbrePhotos(aNbImages);                      //dans galerie.h
+	galerie->getNbrePhotos();
+		cout<<"nombre d'images : "<< galerie->getNbrePhotos()<<endl;
+
+	_agglomeration=aAgglo;                                  // enregistrement.h
+
+	_rue =aRue;                                             // enregistrement.h
+
+
+	const char* X;   //cree la variable X de type const char *
+	X=aDate.c_str();      // fait une conversion de aDate qui est de type string en const char*
+
+	char Date[6];   // On cree un tableau "Date" de 6
+	strcpy( Date, X); //on convertit X qui est de type const char * en Date qui est de type char*
+
+        horodatage->setDate(Date);                              //dans horodatage.h
+	horodatage->getDate(Date);
+	cout<<"affiche Date : "<<Date<<endl;
+
+	_notes=aNotes;                                      // enregistrement.h
+
+
+	ampoule->setPuissance(aPuissance);                        //dans ampoule.h
+	ampoule->getPuissance();
+		cout<<"Puissance : " << ampoule->getPuissance()<<endl;
+
 }
 
-/*
+
 void Enregistrement::getDonneesCommunes() {
 	throw "Not yet implemented";
 }
@@ -203,7 +227,7 @@ void Enregistrement::setGeolocalisation(char aLatitude_[10], char aLongitude[10]
 void Enregistrement::getAmpoule(string &type, float &intensiteLumineuse, int &puissance){
 	type = this->ampoule->getType();
 	intensiteLumineuse = this->ampoule->getIntensiteLumineuse();
-	puissance = this->ampoule->getIntensiteLumineuse();
+	puissance = this->ampoule->getPuissance();
 }
 
 void Enregistrement::getLampadaire(string &type, float &hauteur, int &ulor, float &albedo)
@@ -228,7 +252,6 @@ void Enregistrement::getHorodatage(char date[6])
 
 void Enregistrement::getGeolocalisation(char aLatitude_[10], char aLongitude[10])
 {
-	this->geolocalisation->getLatitude(aLatitude_ );
+	this->geolocalisation->getLatitude(aLatitude_);
 	this->geolocalisation->getLongitude(aLongitude);
 }
-*/

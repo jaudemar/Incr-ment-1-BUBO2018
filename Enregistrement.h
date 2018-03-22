@@ -32,7 +32,7 @@ using namespace std;
 		public: Enregistrement(string aIdRaspberry, GPS * unGPS) ;
 				Enregistrement( GPS * unGPS);
 				Enregistrement(int aId, float aAlbedo, float aFluxLum, string aIdEnregistrement, string aIdRaspberry, string aTypeAmpoule, string aTypeLampadaire, int aHauteur, double aLatitude,  double aLongitude, int aNbImages, string aAgglo, string aRue, int aUlor, string aDate, string aNotes, int puissance);
-				Enregistrement(float aAlbedo, float aFluxLum, string aIdEnregistrement, string aIdRaspberry, string aTypeAmpoule, string aTypeLampadaire, int aHauteur, double aLatitude, double aLongitude,  int aNbImages, string aAgglo, string aRue, int aUlor, string aDate, string aNotes,int puissance);
+				Enregistrement(float aAlbedo, float aFluxLum, string aIdEnregistrement, string aIdRaspberry, string aTypeAmpoule, string aTypeLampadaire, int aHauteur, double aLatitude, double aLongitude,  int aNbImages, string aAgglo, string aRue, int aUlor, string aDate, string aNotes,int aPuissance);
 
 		/// <summary>
 		/// Cette méthode permet de récupérer les données réutilisables pour un nouvel enregistrement.

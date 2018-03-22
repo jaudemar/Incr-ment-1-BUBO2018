@@ -16,7 +16,7 @@ using namespace cgicc;
 
 int main(int argc, char * argv[]) {
 	sqlite3 *db;
-	if(sqlite3_open("/home/pi/bdd/Enregistrement.db", &db))
+	if(sqlite3_open("/home/pi/Documents/Enregistrement.db", &db))
 		fprintf(stderr, "Can't open database: %s\n", sqlite3_errmsg(db));
 
 	Cgicc formData;
