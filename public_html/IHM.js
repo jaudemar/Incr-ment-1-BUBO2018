@@ -1,6 +1,6 @@
 $(function() {
     $('#tableau').on('click','tr', ClicTableau);
-    $('#Raffraichir').on('click',debug);
+    $('#Rafraîchir').on('click',debug);
     $('#nouveau').on('click',Nouveau);
     $('#modifier').on('click', Modifier);
     $('#supprimer').on('click', Supprimer);
@@ -9,6 +9,7 @@ $(function() {
     $("#save").on('click', BoutonEnregistrer);
 });
 var identifiant;
+var trId;
 /*
 function degriser () 
 {  
@@ -137,51 +138,14 @@ function BoutonEnregistrer()
             var request = new XMLHttpRequest();
             request.open("POST", "/cgi-bin/enregistrer.cgi");
             request.send(formData);
-            
-            ////////////////////////////////
-		/*$.ajax({    
-		    type : 'POST',
-		    url : '/cgi-bin/enregistrer.cgi',
-		    data : formData,
-		    cache: false,
-                    processData: false,
-                    contentType: false,
-		    success : function (data) {
-			/*tab = data;
-			genererTableau(tab);*/
-		   /* },
-		    error : function (result, status, erreur){
-			alert(erreur);
-		    },
-		    });*/
-        /////////////////////////////////////////////
-        	/*$.ajax({
-			type : 'POST',
-                	url : "../cgi-bin/enregistrer.cgi",
-                	dataType: "json",
-            		data : formData,
-                        success: function (reponse,status) {
-                                $('#donne0').val('');
-            			$('#donne1').val('');
-                                
-                        },
-                        error: function (reponse,status) {
-                            alert("L'enregistrement des donn�es c'est interrompus, veuilliez r�ssayez");
-                        }
-			});*/
-    	} /*else {
-          type: 'POST',
-                        url: '../cgi-bin/gps/modifier.cgi',
-                        dataType: "json",
-            data : 'modifierValeur',
-                        success: function (reponse,status) {
-                                
-                                },
-                        error: function (reponse,status) {
-                           alert("La modification des donn�es c'est interrompus, veuilliez r�ssayez");
-                        }
-
-    }                  */  
+    	}
+ 
+        if($('#modifier').val() == 'Annuler')
+    	{
+            var request = new XMLHttpRequest();
+            request.open("POST", "/cgi-bin/modifier.cgi");
+            request.send(formData);  
+        }
 
 
             $('#tab2').attr('class', 'ui-listview'); // cet �l�ment aura la classe ui-listview
@@ -194,8 +158,8 @@ function BoutonEnregistrer()
             $('#modifier').prop('disabled', true);
             $('#modifier').button('refresh');
 
-            $('#Raffraichir').prop('disabled', true); //dégriser le bouton raffraichir
-            $('#Raffraichir').button('refresh');
+            $('#Rafraîchir').prop('disabled', false); //dégriser le bouton raffraichir
+            $('#Rafraîchir').button('refresh');
 
             $('#donne0').val('');
             $('#donne1').val('');
@@ -209,15 +173,15 @@ function BoutonEnregistrer()
 function ChangerMode() {
     
     
-       /* if($('#Raffraichir').val() == 'Mode Revue'){
+        if($('#ChangMod').val() == 'Mode Revue'){
             $('.ui-content').css("background-color", "blue");    
-            $('#Raffraichir').val('Mode Enregistrement');
+            $('#ChangMod').val('Mode Enregistrement');
         }else{
-            $('#Raffraichir').val('Mode Revue');
+            $('#ChangMod').val('Mode Revue');
             $('.ui-content').css("background-color", "#FCE2E2");    
         }
-        $('#Raffraichir').button('refresh');
-        return;    */
+        $('#ChangMod').button('refresh');
+        return;    
 };
 
 function ClicTableau () {
@@ -232,18 +196,23 @@ function ClicTableau () {
         var value = "";
 
     //var trId = document.getElementById("0");
-	var trId = $(this).closest("tr").attr("id");
+	 trId = $(this).closest("tr").attr("id");
 
     //console.log(data.enregistrement[trId].LATITUDE);
          $('#donne0').val(tab.enregistrement[trId].LATITUDE);
          $('#donne1').val(tab.enregistrement[trId].LONGITUDE);
-         $('#donne5').val(tab.enregistrement[trId].HAUTEUR);
-        // $('#donne6').val(tab.enregistrement[0].PUISSANCE);
-         $('#donne8').val(tab.enregistrement[trId].AGGLOMERATION);
-         $('#donne9').val(tab.enregistrement[trId].RUE);
+         $('#donne5').val(tab.enregistrement[trId].HEIGHT);
+         $('#donne6').val(tab.enregistrement[trId].POWER);
+         $('#donne8').val(tab.enregistrement[trId].TOWN);
+         $('#donne9').val(tab.enregistrement[trId].STREET);
          $('#donne10').val(tab.enregistrement[trId].NOTES);      
-         $('#donne12').val(tab.enregistrement[trId].FLUXLUM); 
-    
+         $('#donne12').val(tab.enregistrement[trId].FLUX);
+        // $('#donne2').val(tab.enregistrement[trId].STREETLIGHT);
+         $('#donne4').val(tab.enregistrement[trId].LAMP);
+         $('#donne7').val(tab.enregistrement[trId].ALBEDO);
+         $('#donne2 option[value="Projecteur sur mat"').prop('selected',true);
+        // $('#donne2 option:selected').val(tab.enregistrement[trId].STREETLIGHT);
+
     $('#input1').val(value);
     $('#modifier').prop('disabled', false);          //Change l'état de disable
     $('#supprimer').prop('disabled', false);                    // Le bouton se met a jour     
@@ -279,9 +248,9 @@ function Nouveau() {
             $('#modifier').prop('disabled', true); //griser le bouton modifier  
             $('#modifier').button('refresh');
 
-            $('#Raffraichir').prop('disabled', true); //griser le bouton raffraichir
-            $('#Raffraichir').button('refresh');
-            
+            $('#Rafraîchir').prop('disabled', true); //griser le bouton raffraichir
+            $('#Rafraîchir').button('refresh');
+
             degriserChamps(); //On degrise les champs
 
             $('#tab2').attr('class', 'ui-disabled ui-listview'); //On grise le tableau
@@ -295,10 +264,9 @@ function Nouveau() {
 
             $('#nouveau').prop('value', 'Nouveau'); //On repasse sa valeur a "Nouveau"
             $('#nouveau').button('refresh');
-            
-            $('#Raffraichir').prop('disabled', false); //dégriser le bouton raffraichir
-            $('#Raffraichir').button('refresh');
 
+            $('#Rafraîchir').prop('disabled', false); //dégriser le bouton raffraichir
+            $('#Rafraîchir').button('refresh');
 
             griserChamps(); //On grise les champs
 	}
@@ -317,6 +285,8 @@ function Nouveau() {
 
         $('#save').prop('disabled', false);  
         $('#save').button('refresh');
+
+$('#donne2 option:selected').val(tab.enregistrement[3].STREETLIGHT);
 
         return; 
     } else {
@@ -402,7 +372,7 @@ function lireListe() {
 function BoutonGeolocaliser() {   // NE Pas OULIER DE CHANGER LA PERMISSION
     $.ajax({
         type: 'POST',
-        url: '../cgi-bin/collecteur.cgi',
+        url: '../cgi-bin/gps.cgi',
         dataType: "json",
             //data : 'geolocaliser', ne fonctionne pas sur Chrome
         success: function (reponse,status) {
